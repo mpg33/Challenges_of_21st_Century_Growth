@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./static/lib/css//bootstrap.min.css">
+  <link rel="stylesheet" href="./static/lib/css/keen-dashboards.css">
+  <link rel="stylesheet" href="./static/lib/css/dc.css">
+  <link rel="stylesheet" href="./static/css/custom.css">
+
+
+</head>
+<body class="application">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+       <div>
+         <input type="submit" name="submit_button" value="SF">
+         <input type="submit" name="submit_button" value="NY">
+         <button type="button">Click Me!</button>
+       </div>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">Urban Growth in 21st Century</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Metro Area</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <ul>
+                  <li><a class="dropdown-item" href="index.html">Los Angles Metro      </a></li>
+                  <li><a class="dropdown-item" href="sf.html">San Francisco Metro </a></li>
+                  <li><a class="dropdown-item" href="ny.html">New York Metro   </a></li>
+                </ul>
+                </div>
+          </li>
+        </ul>
+       </div> 
+
+      
+  <!-- <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html"><b>Lattitude</b></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+         <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="data.html">Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="comparison.html">Comparison</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plots</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="temp.html">Temperature</a>
+              <a class="dropdown-item" href="humidity.html">Humidity</a>
+              <a class="dropdown-item" href="windspeed.html">Wind Speed</a>
+              <a class="dropdown-item" href="cloudiness.html">Cloudiness</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav
+  </div> -->
+
+
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="row">
+
+          <!-- Time Chart --> 
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                GDP Billion$
+              </div>
+              <div class="chart-stage">
+                <div id="time-chart"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Time Chart --> 
+
+          <!-- Resources Pie -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Per Capita Income
+              </div>
+              <div class="chart-stage">
+                <div id="resource-type-row-chart1"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Resources Pie -->
+
+          <!-- Poverty Pie -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Poverty Level
+              </div>
+                     <div>
+                       <input type="submit" name="submit_button" value="SF">
+                       <input type="submit" name="submit_button" value="NY">
+                       <button type="button">Click Me!</button>
+                     </div>
+              <div class="chart-stage">
+                <div id="poverty-level-row-chart"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Poverty Pie -->
+
+        </div>
+      </div>
+
+      <!-- Map -->  
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Distribution of Donations
+          </div>
+          <div class="chart-stage">
+            <div id="us-chart"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Map -->
+
+      <!-- Metric 1 -->
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Total Number of Donations
+          </div>
+          <div class="chart-stage">
+            <div id="number-projects-nd"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Metric 1 -->
+
+      <!-- Metric 2 -->
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">Total Donations in USD</div>
+          <div class="chart-stage">
+            <div id="total-donations-nd"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Metric 2 -->
+
+    </div>
+
+  
+
+    
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+    
+  </div>
+
+  <script src="./static/lib/js/jquery.min.js"></script>
+  <script src="./static/lib/js/bootstrap.min.js"></script>
+  <script src="./static/lib/js/crossfilter.js"></script>
+  <script src="./static/lib/js/d3.js"></script>
+  <script src="./static/lib/js/dc.js"></script>
+  <script src="./static/lib/js/queue.js"></script>
+
+
+  <script src="./static/lib/js/keen.min.js"></script>
+  <script src='./static/js/graphs_sf.js' type='text/javascript'></script>
+
+</body>
+</html>

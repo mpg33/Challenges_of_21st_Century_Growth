@@ -1,0 +1,54 @@
+* The navbar container */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Navbar links */
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+  
+}
+.jumbotron{
+
+    background:light gray ;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+
+
+    margin-bottom: 0 ;
+}
+  
+  h3{
+
+    color: green;
+}
+ h2{
+
+    color: purple;
+}
+.figure-caption{
+
+    color: black;
+    text-align: center;
+    font-size: 10px;
+
+
+    
+}

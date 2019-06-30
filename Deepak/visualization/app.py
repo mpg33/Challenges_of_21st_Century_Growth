@@ -14,11 +14,15 @@ app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
 
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/dbase.db"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
+print('1')
 db = SQLAlchemy(app)
 
+print('2')
 # from .models import Table1
 class Table1(db.Model):
     __tablename__ = 'table1'
@@ -32,146 +36,120 @@ class Table1(db.Model):
     Passengers_mn = db.Column(db.Float)
     Median_AQI = db.Column(db.Float)
     Good_Days_Percent = db.Column(db.Float)
+    Zillow_home_value_index = db.Column(db.Float)
 
     def __repr__(self):
         return '<Table1 %r>' % (self.name)
 
-
-# create route that renders index.html template
+print('3')
+# create route that renders form.html template
 @app.route("/")
-def home():
-    return render_template("index.html")
+def index():
+    return render_template("index_dup.html")
 
 
 
-@app.route("/gdp")
-def gdp():
-    results = db.session.query(Table1.Year, Table1.GDP_bn).filter(Table1.MSA == "LA_MSA").all()
-
-    
-    year = [result[0] for result in results]
-    gdp = [result[1] for result in results]
-    
-
-    gdp_data =[]
-    for i in range(len(year)):
-        gdp_data.append({"year":year[i], "GDP":gdp[i]})
+@app.route("/fetch")
+def fetch():
 
 
-    return jsonify(gdp_data)
+            results = db.session.query(Table1.Year, Table1.MSA, Table1.GDP_bn, Table1.Per_Capita_Income, Table1.Population_mn, Table1.Passengers_mn, Table1.Median_AQI, Table1.Zillow_home_value_index).filter(Table1.Year <=2018).all()
+
+            
+            year = [result[0] for result in results]
+            msa = [result[1] for result in results]
+            gdp = [result[2] for result in results]
+            pci = [result[3] for result in results]
+            pop = [result[4] for result in results]
+            pas = [result[5] for result in results]
+            aqi = [result[6] for result in results]
+            housing = [result[7] for result in results]
+   
+
+            data_msa =[]
+            for i in range(len(year)):
+                data_msa.append({"year":year[i], "msa":msa[i], "GDP":gdp[i], "PCI":pci[i], "pop":pop[i], "pas":pas[i], "aqi":aqi[i], "housing":housing[i]})
+                print(msa[5])
 
 
-    # gdp_data = [{
-        
-    #     "year": year,
-    #     "GDP": gdp,
-           
-    # }]
+            return (jsonify(data_msa))
 
-    # return jsonify(gdp_data)
+@app.route("/filter_msa")
+def filter_msa():
 
-@app.route("/PCI")
-def per_capita_income():
-    results = db.session.query(Table1.Year, Table1.Per_Capita_Income).filter(Table1.MSA == "LA_MSA").all()
+    msa_list = ['LA_MSA', 'SF_MSA', 'NY_MSA']
+    chartData = []
 
-    
-    year = [result[0] for result in results]
-    pci = [result[1] for result in results]
-    
+    for msa_name in msa_list:
 
-    pci_data =[]
-    for i in range(len(year)):
-        pci_data.append({"year":year[i], "Per_Capita_Income":pci[i]})
+            results = db.session.query(Table1.Year, Table1.MSA, Table1.GDP_bn, Table1.Per_Capita_Income, Table1.Population_mn, Table1.Passengers_mn, Table1.Median_AQI).filter(Table1.MSA == msa_name).all()
 
+            
+            year = [result[0] for result in results]
+            msa = [result[1] for result in results]
+            gdp = [result[2] for result in results]
+            pci = [result[3] for result in results]
+            pop = [result[4] for result in results]
+            pas = [result[5] for result in results]
+            aqi = [result[6] for result in results]
+   
 
-    return jsonify(pci_data)
-
-
-    # pci_data = [{
-        
-    #     "year": year,
-    #     "Per_Capita_Income": pci,
-           
-    # }]
-
-    # return jsonify(pci_data)
-
-@app.route("/population")
-def population():
-    results = db.session.query(Table1.Year, Table1.Population_mn).filter(Table1.MSA == "LA_MSA").all()
-
-    
-    year = [result[0] for result in results]
-    pop = [result[1] for result in results]
-    
-
-    pop_data =[]
-    for i in range(len(year)):
-        pop_data.append({"year":year[i], "Population_mn":pop[i]})
-
-    return jsonify(pop_data)
+            data_msa =[]
+            for i in range(len(year)):
+                data_msa.append({"year":year[i], "msa":msa[i], "GDP":gdp[i], "PCI":pci[i], "pop":pop[i], "pas":pas[i], "aqi":aqi[i]})
+                print(msa[5])
 
 
-    # pop_data = [{
-        
-    #     "year": year,
-    #     "GDP": pop,
-           
-    # }]
+            print(len(data_msa))
+            chartData.append(data_msa)
 
-    # return jsonify(pop_data)
-
-@app.route("/air_passengers")
-def air_passengers():
-    results = db.session.query(Table1.Year, Table1.Passengers_mn).filter(Table1.MSA == "LA_MSA").all()
-
-    
-    year = [result[0] for result in results]
-    passengers = [result[1] for result in results]
-    
-
-    passsenger_data =[]
-    for i in range(len(year)):
-        passenger_data.append({"year":year[i], "Passengers_mn":passengers[i]})
-
-    return jsonify(passenger_data)
+    return (jsonify(chartData))
 
 
-    # gdp_data1 = [{
-        
-    #     "year": year,
-    #     "GDP": gdp,
-           
-    # }]
+@app.route("/tomtom")
+def tomtom():
+    import requests
+    from bs4 import BeautifulSoup
 
-    # return jsonify(gdp_data)
+    url = "https://www.tomtom.com/en_gb/traffic-index/ranking/"
+    response = requests.get(url)
+    data = response.text
+    soup = BeautifulSoup(data, "html.parser")
 
-@app.route("/airQ")
-def airQ():
-    results = db.session.query(Table1.Year, Table1.Good_Days_Percent).filter(Table1.MSA == "LA_MSA").all()
+    # collect table data
+    rows = soup.findAll(class_='RankingTable__table')[0].find("tbody").find_all("tr")
 
-    
-    year = [result[0] for result in results]
-    good_days = [result[1] for result in results]
-    
+    # save city name and congestion table in a dictionary
 
-    good_days_data =[]
-    for i in range(len(year)):
-        good_days_data.append({"year":year[i], "Good_Days_Percent":good_days[i]})
-        print(good_days_data)
+    city =[]
+    congestion =[]
+    for row in rows:
+        cells = row.find_all("td")
+        city.append(cells[2].get_text())
+        congestion.append(cells[4].get_text().split("%")[0])
 
-    return jsonify(good_days_data)
+    dict_city = dict(zip(city, congestion))
+
+    myData = [{"LA": dict_city["Los Angeles"], "SF": dict_city["San Francisco"], "NY": dict_city["New York"] }]
+    print(myData)
+
+    return(jsonify(myData))
 
 
-    # good_days_data = [{
-        
-    #     "year": year,
-    #     "Good_Days_Percent": good_days,
-           
-    # }]
 
-    # return jsonify(good_days_data)
+
+
+
+@app.route("/testing")
+def testing():
+
+
+    return render_template("testing.html")
+
 
 
 if __name__ == "__main__":
     app.run()
+
+
+
