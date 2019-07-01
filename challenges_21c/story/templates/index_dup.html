@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./static/lib/css//bootstrap.min.css">
+  <link rel="stylesheet" href="./static/lib/css/keen-dashboards.css">
+  <link rel="stylesheet" href="./static/lib/css/dc.css">
+  <link rel="stylesheet" href="./static/css/custom.css">
+
+
+</head>
+
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./"><b>Combined Summary: NY, LA & SF Metropolitan Statistical Areas</b></a>
+      </div>
+
+      <div class="navbar-header">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('census', census_index='Population_mn')}}"><h4><b style="color:#FFFF00;">Link to details</b></h4></a>
+          </li>
+
+        </ul>
+       </div> 
+
+
+    </div>
+  </div>
+
+ <body class="application"> 
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="row">
+
+
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <h4><b>$$ GDP (Billions) </b></h4>
+              </div>
+              <div class="chart-stage">
+                <div id="gdp-area-chart"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <h4><b>$$ Per Capita Income (Thousands) </b></h4>
+              </div>
+              <div class="chart-stage">
+                <div id="pciarea-chart"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <h4><b>&#128106; Population (Millions) </b></h4>
+              </div>
+              <div class="chart-stage">
+                <div id="population-area-chart"></div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+    <div class="col-sm-4">
+        <div class="row">
+
+      <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <h4><b>&#127969; Zillow Home Value Index </b></h4>
+              </div>
+              <div class="chart-stage">
+                <div id="house-area-chart"></div>
+              </div>
+              </div>
+            </div>
+          <!-- Map -->
+
+          <!-- Metric 1 -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <h4><b>&#9992; Air Traffic:passengers boarding (Millions) </b></h4>
+              </div>
+              <div class="chart-stage">
+                <div id="pas-area-chart"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Metric 1 -->
+
+          <!-- Metric 2 -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title"><h4><b>&#9927; Median Air Quality Index</b></h4></div>
+              <div class="chart-stage">
+                <div id="aqi-area-chart"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Metric 2 -->
+
+        </div>
+      </div>
+
+    <div class="col-sm-4">
+      <div class="row">
+      
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <h4><b>&#128661;&#128661;&#128661;TomTom Global Traffic Congestion Rankings </b></h4>
+              </div>
+              <b><i><input type="text" id="TomTom_index_LA"></i></b>
+              <b><i><input type="text" id="TomTom_index_SF"></i></b>
+              <b><i><input type="text" id="TomTom_index_NY"></i></b>
+              <div> 
+
+              </div>
+              </div>
+            </div>
+          <!-- Map -->
+
+
+
+          <!-- Metric 1 -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <object type="text/html" data="https://www.tomtom.com/en_gb/traffic-index/ranking/" width="500px" height="700px" font size="2" style="overflow:auto;border:1px ridge blue">
+              </object>
+              </div>
+              <div class="chart-stage">
+                <div id="others-1"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Metric 1 -->
+
+          <!-- Metric 2 -->
+          <!-- <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">Air Quality Index - Median AQI</div>
+              <div class="chart-stage">
+                <div id="others-2"></div>
+              </div>
+            </div>
+          </div> -->
+          <!-- Metric 2 -->
+        </div>
+      </div>
+
+    </div>
+
+  
+
+    
+<!--     <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p> -->
+    
+  </div>
+
+  <script src="./static/lib/js/jquery.min.js"></script>
+  <script src="./static/lib/js/bootstrap.min.js"></script>
+  <script src="./static/lib/js/crossfilter.js"></script>
+  <script src="./static/lib/js/d3.js"></script>
+  <script src="./static/lib/js/dc.js"></script>
+  <script src="./static/lib/js/queue.js"></script>
+
+
+  <script src="./static/lib/js/keen.min.js"></script>
+  <script src='./static/js/graphs_dup_copy.js' type='text/javascript'></script>
+
+</body>
+</html>

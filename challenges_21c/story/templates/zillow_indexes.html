@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+		<p><h2>Home Records</h2></p>
+		<table class="table table-striped table-hover">
+			<thead >
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Value</th>
+				<th scope="col">MSA</th>
+				<th scope="col">Code</th>
+				<th scope="col">Description</th>
+			</tr>
+			</thead>
+			<tbody>
+				{% for n in dataset %}
+			<tr>
+				<td>{{n.Date}}</td>
+				<td>{{n.Value}}</td>
+				<td>{{n.MSA}}</td>
+				<td>{{n.Zillow_code}}</td>
+				<td>{{n.Description}}</td>
+			</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	
+
+{% endblock %}

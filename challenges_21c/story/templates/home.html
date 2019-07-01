@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+        <p><h2>Zillow Index Records</h2></p>
+        <table class="table table-striped table-hover">
+            <thead >
+            <tr>
+                <th scope="col">MSA</th>
+                <th scope="col">Year</th>
+                <th scope="col">GDP_bn</th>
+                <th scope="col">Per_Capita_Income</th>
+                <th scope="col">Population_mn</th>
+                <th scope="col">Passengers_mn</th>
+                <th scope="col">Median_AQI</th>
+                <th scope="col">Good_Days_Percent</th>
+                <th scope="col">Zillow_home_value_index</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for n in dataset %}
+            <tr>
+                <td>{{n.MSA}}</td>
+                <td>{{n.Year}}</td>
+                <td>{{n.GDP_bn}}</td>
+                <td>{{n.Per_Capita_Income}}</td>
+                <td>{{n.Population_mn}}</td>
+                <td>{{n.Passengers_mn}}</td>
+                <td>{{n.Median_AQI}}</td>
+                <td>{{n.Good_Days_Percent}}</td>
+                <td>{{n.Zillow_home_value_index}}</td>
+            </tr>
+    
+    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+
