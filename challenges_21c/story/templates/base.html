@@ -59,14 +59,29 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{url_for('census', census_index='Passengers_mn')}}">Transportation</a>
                     </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Air Polution
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="nav-link" href="{{url_for('census', census_index='Median_AQI')}}">Air Quality</a>
-                    </li>                     
-                    <li class="nav-item">
                         <a class="nav-link" href="{{url_for('census', census_index='Good_Days_Percent')}}">Good Days (%)</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('census', census_index='Home_Value')}}">Housing</a>
+                    </li>                    
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Housing
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" href="{{url_for('zillow', zillow_code='ZRIAH')}}">Rental Index</a>
+                        <a class="nav-link" href="{{url_for('home_challenges')}}">Challenges</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link" href="{{url_for('zillow', zillow_code='ZHVIAH')}}">Home Value</a>
+                        <a class="nav-link" href="{{url_for('zillow', zillow_code='PHIVAH')}}">Increasing Value</a>
+                        <a class="nav-link" href="{{url_for('zillow', zillow_code='PHDVAH')}}">Decreasing Value</a>
+                        <a class="nav-link" href="{{url_for('zillow', zillow_code='IMP')}}">Hosing Inventory</a>
+                      </div>
                     </li>
                   </ul>
                   
@@ -89,5 +104,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+
+    
     </body>
 </html>

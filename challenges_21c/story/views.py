@@ -215,6 +215,12 @@ def add_table1_data():
     return redirect(url_for('zillow'))    
 
 
+
+@app.route('/home_challenges')
+def home_challenges():
+    return render_template('home_challenges.html')
+
+
 @app.route('/zillow')
 @app.route('/zillow/<zillow_code>')
 def zillow(zillow_code = None):
@@ -239,13 +245,13 @@ def zillow(zillow_code = None):
             SFy.append(n.Value)
 
     scatter = create_scatter(LAx, LAy, NYx, NYy, SFx, SFy)
-    bar = create_bar(LAx, LAy, NYx, NYy, SFx, SFy)
+#    bar = create_bar(LAx, LAy, NYx, NYy, SFx, SFy)
 
-    my_dict = {"Detail Chart": "tab1", "Source Data": "tab2"}
+#    my_dict = {"Detail Chart": "tab1", "Source Data": "tab2"}
 
-#    return render_template('zillow_indexes.html', title=title, dataset=dataset, plot1=scatter, plot2=bar, my_dict=my_dict)
+    return render_template('zillow_indexes.html', title=title, dataset=dataset, plot1=scatter,)
 
-    return render_template('census_data.html', title=title, census_data=dataset, plot1=scatter, plot2=bar, my_dict=my_dict)    
+#    return render_template('zillow_indexes.html', title=title, census_data=dataset, plot1=scatter, plot2=bar, my_dict=my_dict)    
 
 @app.route('/add_zillow')
 def add_records_zillow():
